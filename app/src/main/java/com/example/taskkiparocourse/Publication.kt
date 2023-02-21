@@ -6,15 +6,15 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Publication(
     @Json(name = "id")
-    val id: Int,
+    val id: Int?,
     @Json(name = "title")
-    val title: String,
+    val title: String?,
     @Json(name = "description")
-    val description: String,
+    val description: String?,
     @Json(name = "date")
-    val date: String,
+    val date: String?,
     @Json(name = "keywords")
-    val keywords: List<String>,
+    val keywords: List<String>?,
     @Json(name = "visible")
-    val visible: Boolean
+    val visible: Boolean?
 )
