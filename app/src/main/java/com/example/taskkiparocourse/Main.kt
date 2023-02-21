@@ -8,7 +8,9 @@ import okhttp3.Request
 import java.net.URL
 
 val client: OkHttpClient = OkHttpClient()
-val jsonFile:
+
+const val jsonFileUrl = "https://api2.kiparo.com/static/it_news.json"
+const val xmlFileUrl = "https://api2.kiparo.com/static/it_news.xml"
 
 fun main() {
     println("Нажмите 1, чтобы скачать JSON, 2 - XML")
@@ -22,16 +24,19 @@ fun main() {
     }
 }
 
+
+//парсинг загруженного json файла
 @OptIn(ExperimentalStdlibApi::class)
 fun loadJsonFile() {
-    val jsonFile = "https://api2.kiparo.com/static/it_news.json"
+    val jsonFile = getRequest(jsonFileUrl)
     val moshi: Moshi = Moshi.Builder().build()
     val jsonAdapter: JsonAdapter<Publication> = moshi.adapter()
 
-    val news = jsonAdapter.fromJson(jsonFile)
+    val news = jsonFile?.let { jsonAdapter.fromJson(it) }
     println(news)
 }
 
+//загрузка файла
 private fun getRequest(sUrl: String): String? {
     var result: String? = null
     try {
