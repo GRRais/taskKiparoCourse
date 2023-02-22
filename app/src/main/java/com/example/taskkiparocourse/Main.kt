@@ -1,22 +1,16 @@
 package com.example.taskkiparocourse
 
-import com.example.taskkiparocourse.retrofit.NewsApi
-import com.example.taskkiparocourse.retrofit.SuperNews
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.adapter
+import com.example.taskkiparocourse.retrofit.SuperNewsApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.URL
 
 val client: OkHttpClient = OkHttpClient()
 
-const val jsonFileUrl = "https://api2.kiparo.com/static/"
+const val jsonFileUrl = "https://api2.kiparo.com"
 const val xmlFileUrl = "https://api2.kiparo.com/static/it_news.xml"
 
 fun main() {
@@ -35,10 +29,10 @@ fun getSuperNews() {
     val retrofit = Retrofit.Builder()
         .baseUrl(jsonFileUrl)
         .addConverterFactory(GsonConverterFactory.create()).build()
-    val newsApi = retrofit.create(NewsApi::class.java)
+    val superNewsApi = retrofit.create(SuperNewsApi::class.java)
     CoroutineScope(Dispatchers.IO).launch {
-        val news = newsApi.getNewsById()
-        println(news)
+        val superNews = superNewsApi.getNewsById()
+        println(superNews)
     }
 }
 
