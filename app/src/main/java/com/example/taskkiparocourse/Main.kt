@@ -1,7 +1,6 @@
 package com.example.taskkiparocourse
 
 import android.util.Log
-import com.example.taskkiparocourse.retrofit.SuperNewsApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +42,7 @@ fun parseSuperNews() {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val service = retrofit.create(SuperNewsApi::class.java)
+    val service = retrofit.create(ApiService::class.java)
 
     CoroutineScope(Dispatchers.IO).launch {
         val response = service.getNewsById()
