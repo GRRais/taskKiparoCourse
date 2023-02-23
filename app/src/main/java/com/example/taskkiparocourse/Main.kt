@@ -73,12 +73,12 @@ fun parseSuperNews() {
                         val visible = news[i].visible ?: "N/A"
                         Log.d("VISIBLE: ", visible as String)
                     }
+                    println(news)
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }
             }
         }
-        println(response.body()?.news)
     }
 }
 
