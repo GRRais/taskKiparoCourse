@@ -5,17 +5,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val client: OkHttpClient = OkHttpClient()
 
-const val jsonFileUrl = "https://api2.kiparo.com"
+const val jsonFileUrl = "https://api2.kiparo.com/"
 const val xmlFileUrl = "https://api2.kiparo.com/static/it_news.xml"
 
 fun main() {
     println("Нажмите 1, чтобы скачать JSON, 2 - XML")
-    println()
     when (readLine()) {
         "1" -> getSuperNews()
         "2" -> print("x == 2")
@@ -26,14 +26,34 @@ fun main() {
 }
 
 fun getSuperNews() {
-    val retrofit = Retrofit.Builder()
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+    val client = OkHttpClient
+        .Builder()
+        .addInterceptor(interceptor)
+        .build()
+
+    val retrofit = Retrofit
+        .Builder()
         .baseUrl(jsonFileUrl)
-        .addConverterFactory(GsonConverterFactory.create()).build()
+        .client(client)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
     val superNewsApi = retrofit.create(SuperNewsApi::class.java)
+
     CoroutineScope(Dispatchers.IO).launch {
         val superNews = superNewsApi.getNewsById()
         println(superNews)
     }
+}
+
+fun interceptor() {
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+    val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 }
 
 ////парсинг загруженного json файла

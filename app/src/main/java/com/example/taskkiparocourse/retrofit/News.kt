@@ -1,11 +1,19 @@
 package com.example.taskkiparocourse.retrofit
 
+import com.google.gson.annotations.SerializedName
+
 //@JsonClass(generateAdapter = true)
 data class News(
-//    @Json(name = "name")
-    val name: String,
-//    @Json(name = "location")
-    val location: String,
-//    @Json(name = "news")
-    val news: List<SuperNews>
+    @SerializedName("id")
+    val id: Int?,
+    @SerializedName("title")
+    val title: String?,
+    @SerializedName("description")
+    val description: String?,
+    @SerializedName("date")
+    val date: String?,
+    @SerializedName("keywords")
+    val keywords: List<String>?,
+    @SerializedName("visible")
+    val visible: Boolean?
 )
