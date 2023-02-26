@@ -16,7 +16,7 @@ class RVAdapter(private val newsCell: ArrayList<NewsCell>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemViewHolder = holder as NewsCellViewHolder
-        itemViewHolder.viewBinding.newsTitleTextview.text = newsCell[position].title.toString()
+        itemViewHolder.viewBinding.newsTitleTextview.text = newsCell[position].title
         itemViewHolder.viewBinding.newsDescriptionTextview.text = newsCell[position].description
         itemViewHolder.viewBinding.newsDateTextview .text = newsCell[position].date
         itemViewHolder.viewBinding.newsKeywordsTextview.text = newsCell[position].keywords.toString()
