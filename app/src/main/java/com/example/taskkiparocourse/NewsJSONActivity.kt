@@ -1,8 +1,8 @@
 package com.example.taskkiparocourse
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,9 +16,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.ArrayList
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 
-class NewsJSONActivity : AppCompatActivity() {
+const val jsonFileUrl = "https://api2.kiparo.com"
+const val xmlFileUrl = "https://api2.kiparo.com/static/it_news.xml"
+
+class NewsActivity : AppCompatActivity() {
 
     var itemsArray: ArrayList<NewsCell> = ArrayList()
     lateinit var adapter: RVAdapter
@@ -50,6 +53,15 @@ class NewsJSONActivity : AppCompatActivity() {
         binding.jsonResultsRecyclerview.addItemDecoration(dividerItemDecoration)
     }
 
+    private fun parseXML() {
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(xmlFileUrl)
+            .client(OkHttpClient())
+            .addConverterFactory(SimpleXmlConverterFactory.create())
+            .build()
+    }
+
     private fun parseJSON() {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -59,8 +71,7 @@ class NewsJSONActivity : AppCompatActivity() {
             .addInterceptor(interceptor)
             .build()
 
-        val retrofit = Retrofit
-            .Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(jsonFileUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())

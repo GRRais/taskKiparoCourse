@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val client: OkHttpClient = OkHttpClient()
 
-const val jsonFileUrl = "https://api2.kiparo.com"
-const val xmlFileUrl = "https://api2.kiparo.com/static/it_news.xml"
+//const val jsonFileUrl = "https://api2.kiparo.com"
+//const val xmlFileUrl = "https://api2.kiparo.com/static/it_news.xml"
 
 fun main() {
     println("Нажмите 1, чтобы скачать JSON, 2 - XML")

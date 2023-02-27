@@ -14,7 +14,10 @@
         android:theme="@style/Theme.TaskKiparoCourse"
         tools:targetApi="31">
         <activity
-            android:name=".NewsJSONActivity"
+            android:name=".NewsXMLActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NewsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.jsonButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewsJSONActivity::class.java)
+            val intent = Intent(this@MainActivity, NewsActivity::class.java)
             this@MainActivity.startActivity(intent)
         }
 
