@@ -6,5 +6,5 @@ data class NewsCell(
     var description: String,
     var date: String,
     var keywords: List<String>,
-    var visible: Boolean
+    var visible: String
 )

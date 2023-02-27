@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskkiparocourse.databinding.ActivityNewsJsonBinding
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,12 +74,18 @@ class NewsJSONActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
 
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(response.body())
+
+                    Log.d("Pretty Printed JSON :", prettyJson)
+                    binding.jsonResultsTextview.text = prettyJson
+
                     val news = response.body()?.news
                     if (news != null) {
                         for (i in 0 until news.count()) {
 
-                            val id = news[i].id ?: "N/A"
-                            Log.d("ID: ", id as String)
+                            val id = news[i].id.toString() ?: "N/A"
+                            Log.d("ID: ", id)
 
                             val title = news[i].title ?: "N/A"
                             Log.d("TITLE: ", title)
@@ -92,8 +99,8 @@ class NewsJSONActivity : AppCompatActivity() {
                             val keywords = news[i].keywords ?: "N/A"
                             Log.d("KEYWORDS: ", (keywords as List<*>).toString())
 
-                            val visible = news[i].visible ?: "N/A"
-                            Log.d("VISIBLE: ", visible as String)
+                            val visible = news[i].visible.toString() ?: "N/A"
+                            Log.d("VISIBLE: ", visible)
 
                             val model =
                                 NewsCell(
@@ -102,7 +109,7 @@ class NewsJSONActivity : AppCompatActivity() {
                                     description,
                                     date,
                                     keywords as List<String>,
-                                    visible as Boolean
+                                    visible
                                 )
                             itemsArray.add(model)
 

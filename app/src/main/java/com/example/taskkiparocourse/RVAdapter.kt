@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskkiparocourse.databinding.NewsCellBinding
 
-class RVAdapter(private val newsCell: ArrayList<NewsCell>) :
+class RVAdapter(private val newsCell: List<NewsCell>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class NewsCellViewHolder(var viewBinding: NewsCellBinding) : RecyclerView.ViewHolder(viewBinding.root)
 
