@@ -41,10 +41,10 @@ class NewsJSONActivity : AppCompatActivity() {
         binding.jsonResultsRecyclerview.setHasFixedSize(true)
         val dividerItemDecoration =
             DividerItemDecoration(
-                binding.jsonResultsRecyclerview.context ,
+                binding.jsonResultsRecyclerview.context,
                 layoutManager.orientation
             )
-        ContextCompat.getDrawable(this , R.drawable.line_divider)
+        ContextCompat.getDrawable(this, R.drawable.line_divider)
             ?.let { drawable -> dividerItemDecoration.setDrawable(drawable) }
         binding.jsonResultsRecyclerview.addItemDecoration(dividerItemDecoration)
     }
@@ -78,29 +78,29 @@ class NewsJSONActivity : AppCompatActivity() {
                         for (i in 0 until news.count()) {
 
                             val id = news[i].id ?: "N/A"
-                            Log.d("ID: " , id)
+                            Log.d("ID: ", id as String)
 
                             val title = news[i].title ?: "N/A"
-                            Log.d("TITLE: " , title)
+                            Log.d("TITLE: ", title)
 
                             val description = news[i].description ?: "N/A"
-                            Log.d("DESCRIPTION: " , description)
+                            Log.d("DESCRIPTION: ", description)
 
                             val date = news[i].date ?: "N/A"
-                            Log.d("DATE: " , date)
+                            Log.d("DATE: ", date)
 
                             val keywords = news[i].keywords ?: "N/A"
-                            Log.d("KEYWORDS: " , (keywords as List<*>).toString())
+                            Log.d("KEYWORDS: ", (keywords as List<*>).toString())
 
                             val visible = news[i].visible ?: "N/A"
-                            Log.d("VISIBLE: " , visible as String)
+                            Log.d("VISIBLE: ", visible as String)
 
                             val model =
                                 NewsCell(
-                                    id ,
-                                    title ,
-                                    description ,
-                                    date ,
+                                    id,
+                                    title,
+                                    description,
+                                    date,
                                     keywords as List<String>,
                                     visible as Boolean
                                 )
@@ -112,7 +112,7 @@ class NewsJSONActivity : AppCompatActivity() {
                     }
                     binding.jsonResultsRecyclerview.adapter = adapter
                 } else {
-                    Log.e("RETROFIT_ERROR" , response.code().toString())
+                    Log.e("RETROFIT_ERROR", response.code().toString())
                 }
             }
         }

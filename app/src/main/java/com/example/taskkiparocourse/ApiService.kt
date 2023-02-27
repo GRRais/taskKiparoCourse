@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("/static/it_news.json")
-    suspend fun getNewsById(): Response<SuperNews>
+    suspend fun getNewsById(): Response<JSONModel>
 }
