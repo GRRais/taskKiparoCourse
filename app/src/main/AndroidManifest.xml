@@ -17,7 +17,7 @@
             android:name=".NewsXMLActivity"
             android:exported="false" />
         <activity
-            android:name=".NewsActivity"
+            android:name=".NewsJSONActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -15,13 +15,13 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.jsonButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, NewsActivity::class.java)
+            val intent = Intent(this@MainActivity, NewsJSONActivity::class.java)
             this@MainActivity.startActivity(intent)
         }
 
-//        binding.xmlButton.setOnClickListener {
-//            val intent = Intent(this@MainActivity, NestedJSONActivity::class.java)
-//            this@MainActivity.startActivity(intent)
-//        }
+        binding.xmlButton.setOnClickListener {
+            val intent = Intent(this@MainActivity, NewsXMLActivity::class.java)
+            this@MainActivity.startActivity(intent)
+        }
     }
 }

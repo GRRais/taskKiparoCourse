@@ -45,7 +45,7 @@ fun parseSuperNews() {
     val service = retrofit.create(ApiService::class.java)
 
     CoroutineScope(Dispatchers.IO).launch {
-        val response = service.getNewsById()
+        val response = service.getNewsFromJson()
 
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
