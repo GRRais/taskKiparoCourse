@@ -6,11 +6,12 @@ import org.simpleframework.xml.Root
 
 @Root(name="root", strict = false)
 data class XMLModel (
-    @field:Element(name = "location")
+    @field:Element(name = "location") @param:Element(name = "location")
     var location: String?,
-    @field:Element(name = "name")
+    @field:Element(name = "name") @param:Element(name = "name")
     var name: String?,
     @field:ElementList(name = "news", inline = true, required = false)
+    @param:ElementList(name = "news", inline = true, required = false)
     var news: List<NewsXML>?
 )
 

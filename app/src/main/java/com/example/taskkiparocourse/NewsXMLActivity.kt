@@ -99,10 +99,11 @@ class NewsXMLActivity : AppCompatActivity() {
                             itemsArray.add(model)
 
                             adapter = RVAdapter(itemsArray)
+                            binding.jsonResultsRecyclerview.adapter = adapter
                             adapter.notifyDataSetChanged()
                         }
                     }
-                    binding.jsonResultsRecyclerview.adapter = adapter
+
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }
